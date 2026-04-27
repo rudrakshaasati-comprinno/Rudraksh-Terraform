@@ -147,7 +147,7 @@ module "ecs" {
   private_app_subnet_ids = local.private_app_subnets
   ecs_sg_id              = module.sg.ecs_sg_id
 
-  container_image = "${module.ecr.repository_url}:final"
+  container_image = "${module.ecr.repository_url}:v8"
 
   target_group_arn = module.alb.target_group_arn
 

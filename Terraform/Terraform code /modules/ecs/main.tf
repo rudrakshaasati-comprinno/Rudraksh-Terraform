@@ -95,7 +95,10 @@ resource "aws_ecs_task_definition" "task" {
 
         { name = "S3_BUCKET", value = var.s3_bucket },
 
-        { name = "MEMCACHED_SERVER", value = var.memcached_endpoint },
+        {
+         name  = "MEMCACHED_SERVER"
+          value = var.memcached_endpoint
+        },
         { name = "KAFKA_SERVER", value = var.kafka_server }
       ]
 
