@@ -1,14 +1,10 @@
-# =========================================================
-# ELASTICACHE SUBNET GROUP
-# =========================================================
+
 resource "aws_elasticache_subnet_group" "memcached" {
   name       = "${var.environment}-memcached-subnet"
   subnet_ids = var.private_app_subnet_ids
 }
 
-# =========================================================
-# ELASTICACHE CLUSTER (MEMCACHED)
-# =========================================================
+
 resource "aws_elasticache_cluster" "memcached" {
   cluster_id           = "${var.environment}-memcached"
   engine               = "memcached"

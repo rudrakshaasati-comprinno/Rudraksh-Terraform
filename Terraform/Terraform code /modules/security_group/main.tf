@@ -1,5 +1,5 @@
 
-# ALB SECURITY GROUP (PUBLIC)
+# ALB SECURITY GROUP 
 
 resource "aws_security_group" "alb_sg" {
   name   = "${var.environment}-alb-sg"
@@ -23,7 +23,7 @@ resource "aws_security_group" "alb_sg" {
 }
 
 
-# ECS SECURITY GROUP (ONLY ALB CAN ACCESS)
+# ECS SECURITY GROUP 
 
 resource "aws_security_group" "ecs_sg" {
   name   = "${var.environment}-ecs-sg"
@@ -47,7 +47,7 @@ resource "aws_security_group" "ecs_sg" {
 }
 
 
-# RDS SECURITY GROUP (ONLY ECS CAN ACCESS)
+# RDS SECURITY GROUP 
 
 resource "aws_security_group" "rds_sg" {
   name   = "${var.environment}-rds-sg"
@@ -71,7 +71,7 @@ resource "aws_security_group" "rds_sg" {
 }
 
 
-# ELASTICACHE (MEMCACHED) SECURITY GROUP
+# ELASTICACHE SECURITY GROUP
 
 resource "aws_security_group" "memcached_sg" {
   name   = "${var.environment}-memcached-sg"
@@ -95,7 +95,7 @@ resource "aws_security_group" "memcached_sg" {
 }
 
 
-# KAFKA SECURITY GROUP (ONLY ECS CAN ACCESS)
+# KAFKA SECURITY GROUP 
 
 resource "aws_security_group" "kafka_sg" {
   name   = "${var.environment}-kafka-sg"

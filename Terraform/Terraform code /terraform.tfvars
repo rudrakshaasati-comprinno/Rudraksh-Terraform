@@ -24,7 +24,6 @@ vpc_conf = {
   subnets = {
 
     public_subnets = {
-      name = "public-subnet"
       cidr = [
         "10.0.0.0/20",
         "10.0.16.0/20",
@@ -33,12 +32,10 @@ vpc_conf = {
 
       additional_tags = {
         owner = "rudra"
-        Tier  = "public-subnet"
       }
     }
 
     private_app_subnets = {
-      name = "private-app-subnet"
       cidr = [
         "10.0.48.0/20",
         "10.0.64.0/20",
@@ -47,12 +44,10 @@ vpc_conf = {
 
       additional_tags = {
         owner = "rudra"
-        Tier  = "private-app-subnet"
       }
     }
 
     private_db_subnets = {
-      name = "private-db-subnet"
       cidr = [
         "10.0.96.0/20",
         "10.0.112.0/20",
@@ -61,7 +56,6 @@ vpc_conf = {
 
       additional_tags = {
         owner = "rudra"
-        Tier  = "private-db-subnet"
       }
     }
   }

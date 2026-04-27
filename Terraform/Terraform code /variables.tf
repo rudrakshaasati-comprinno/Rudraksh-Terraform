@@ -14,7 +14,14 @@ variable "environment" {
 #VPC 
 
 variable "vpc_conf" {
-  description = "VPC and subnet configuration"
+  description = <<-EOT
+    VPC and subnet configuration for multi-tier architecture:
+    - vpc.cidr_vpc: VPC CIDR block (e.g., 10.0.0.0/16)
+    - subnets.public_subnets.cidr: Public tier CIDR blocks (internet-facing)
+    - subnets.private_app_subnets.cidr: Application tier CIDR blocks (ECS, Kafka, ElastiCache)
+    - subnets.private_db_subnets.cidr: Database tier CIDR blocks (RDS)
+    - Additional tags for resource identification and cost allocation
+  EOT
   type        = any
 }
 

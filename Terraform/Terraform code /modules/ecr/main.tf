@@ -1,7 +1,5 @@
 
-# =========================================================
-# ECR REPOSITORY
-# =========================================================
+
 resource "aws_ecr_repository" "repo" {
   name = "${var.environment}-${var.repo_name}"
 

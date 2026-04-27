@@ -32,8 +32,11 @@ locals {
 }
 
 
-#  VPC              
-
+#  VPC (Multi-Tier Architecture)
+# Creates VPC with three-tier subnet architecture:
+# - Public tier: Internet-facing subnets for ALB
+# - Application tier: Private subnets for ECS, Kafka, ElastiCache  
+# - Database tier: Isolated subnets for RDS databases
 
 module "vpc" {
   source      = "./modules/vpc"

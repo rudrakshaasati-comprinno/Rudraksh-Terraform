@@ -1,6 +1,6 @@
-# =========================================================
+
 # DB SUBNET GROUP
-# =========================================================
+
 resource "aws_db_subnet_group" "db_subnet_group" {
   name       = "${var.environment}-db-subnet-group"
   subnet_ids = var.private_db_subnet_ids
@@ -11,9 +11,7 @@ resource "aws_db_subnet_group" "db_subnet_group" {
   }
 }
 
-# =========================================================
-# PARAMETER GROUP (OPTIONAL BUT GOOD PRACTICE)
-# =========================================================
+
 resource "aws_db_parameter_group" "mysql" {
   name   = "${var.environment}-mysql-param"
   family = "mysql8.4"
@@ -24,9 +22,7 @@ resource "aws_db_parameter_group" "mysql" {
   }
 }
 
-# =========================================================
-# RDS INSTANCE
-# =========================================================
+
 resource "aws_db_instance" "rds" {
   identifier = "${var.environment}-rds"
 

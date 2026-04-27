@@ -36,7 +36,7 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "encryption" {
 }
 
 
-# BLOCK PUBLIC ACCESS (SECURITY BEST PRACTICE)
+
 
 resource "aws_s3_bucket_public_access_block" "block" {
   bucket = aws_s3_bucket.bucket.id

@@ -1,21 +1,17 @@
-# =========================================================
+
 # ECS CLUSTER
-# =========================================================
+
 resource "aws_ecs_cluster" "ecs" {
   name = "${var.environment}-ecs-cluster"
 }
 
-# =========================================================
-# CLOUDWATCH LOG GROUP
-# =========================================================
+
 resource "aws_cloudwatch_log_group" "ecs_logs" {
   name              = "/ecs/${var.environment}"
   retention_in_days = 7
 }
 
-# =========================================================
-# ECS EXECUTION ROLE (ECR + LOGS)
-# =========================================================
+
 resource "aws_iam_role" "ecs_execution_role" {
   name = "${var.environment}-ecs-execution-role"
 
@@ -36,9 +32,7 @@ resource "aws_iam_role_policy_attachment" "ecs_execution_attach" {
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
 }
 
-# =========================================================
-# ECS TASK ROLE (APP PERMISSIONS)
-# =========================================================
+
 resource "aws_iam_role" "ecs_task_role" {
   name = "${var.environment}-ecs-task-role"
 
@@ -60,9 +54,8 @@ resource "aws_iam_role_policy_attachment" "ecs_task_s3" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
 }
 
-# =========================================================
 # ECS TASK DEFINITION
-# =========================================================
+
 resource "aws_ecs_task_definition" "task" {
   family                   = "${var.environment}-task"
   network_mode             = "awsvpc"
@@ -114,9 +107,7 @@ resource "aws_ecs_task_definition" "task" {
   ])
 }
 
-# =========================================================
-# ECS SERVICE (PRODUCTION READY)
-# =========================================================
+
 resource "aws_ecs_service" "service" {
   name            = "${var.environment}-service"
   cluster         = aws_ecs_cluster.ecs.id
