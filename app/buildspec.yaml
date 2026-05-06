@@ -1,0 +1,43 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws --version
+
+      # Your AWS Account ID
+      - ACCOUNT_ID=626052500009
+
+      # Your AWS Region
+      - REGION=ap-south-1
+
+      # Your ECR Repository Name
+      - REPOSITORY_NAME=my-app
+
+      # Docker image tag
+      - IMAGE_TAG=latest
+
+      # Login to ECR
+      - aws ecr get-login-password --region $REGION | docker login --username AWS --password-stdin $ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com
+
+  build:
+    commands:
+      - echo Build started on `date`
+
+      # Build Docker image
+      - docker build -t $REPOSITORY_NAME:$IMAGE_TAG .
+
+      # Tag image for ECR
+      - docker tag $REPOSITORY_NAME:$IMAGE_TAG $ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/$REPOSITORY_NAME:$IMAGE_TAG
+
+  post_build:
+    commands:
+      - echo Pushing Docker image...
+
+      # Push image to ECR
+      - docker push $ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/$REPOSITORY_NAME:$IMAGE_TAG
+
+artifacts:
+  files:
+    - '**/*'
