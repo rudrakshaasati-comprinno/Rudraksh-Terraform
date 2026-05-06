@@ -6,16 +6,14 @@ phases:
       - echo Logging in to Amazon ECR...
       - aws --version
 
-      # Your AWS Account ID
+      # AWS details
       - ACCOUNT_ID=626052500009
-
-      # Your AWS Region
       - REGION=ap-south-1
 
-      # Your ECR Repository Name
+      # ECR repository
       - REPOSITORY_NAME=my-app
 
-      # Docker image tag
+      # Image tag
       - IMAGE_TAG=latest
 
       # Login to ECR
@@ -25,8 +23,8 @@ phases:
     commands:
       - echo Build started on `date`
 
-      # Build Docker image
-      - docker build -t $REPOSITORY_NAME:$IMAGE_TAG ./app
+      # Build Docker image using Dockerfile inside app/
+      - docker build -t $REPOSITORY_NAME:$IMAGE_TAG -f app/Dockerfile ./app
 
       # Tag image for ECR
       - docker tag $REPOSITORY_NAME:$IMAGE_TAG $ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/$REPOSITORY_NAME:$IMAGE_TAG
