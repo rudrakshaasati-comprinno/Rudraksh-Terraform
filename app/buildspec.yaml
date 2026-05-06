@@ -20,14 +20,11 @@ phases:
       - aws ecr get-login-password --region $REGION | docker login --username AWS --password-stdin $ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com
 
   build:
-    commands:
-      - echo Build started on `date`
-
-      # Build Docker image using Dockerfile inside app/
-      - docker build -t $REPOSITORY_NAME:$IMAGE_TAG -f app/Dockerfile ./app
-
-      # Tag image for ECR
-      - docker tag $REPOSITORY_NAME:$IMAGE_TAG $ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/$REPOSITORY_NAME:$IMAGE_TAG
+  commands:
+    - echo Build started on `date`
+    - cd app
+    - docker build -t $REPOSITORY_NAME:$IMAGE_TAG .
+    - docker tag $REPOSITORY_NAME:$IMAGE_TAG $ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/$REPOSITORY_NAME:$IMAGE_TAG
 
   post_build:
     commands:
