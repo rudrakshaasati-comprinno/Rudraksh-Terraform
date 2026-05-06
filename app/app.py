@@ -27,7 +27,7 @@ HTML = """
 
 <html>
 <head>
-<title>DevOps Social App</title>
+<title>DevOps Social Application</title>
 <style>
 body {
   font-family: Arial;
