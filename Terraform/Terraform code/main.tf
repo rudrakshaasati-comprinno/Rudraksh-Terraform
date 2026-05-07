@@ -108,11 +108,11 @@ module "rds" {
 # ELASTICACHE
 
 module "elasticache" {
-  source                 = "./modules/elasticache"
-  private_app_subnet_ids = local.private_app_subnets
-  memcached_sg_id        = module.sg.memcached_sg_id
-  node_type              = var.memcached_node_type
-  num_nodes              = var.memcached_nodes
+  source                = "./modules/elasticache"
+  private_db_subnet_ids = local.private_db_subnets
+  memcached_sg_id       = module.sg.memcached_sg_id
+  node_type             = var.memcached_node_type
+  num_nodes             = var.memcached_nodes
 }
 
 

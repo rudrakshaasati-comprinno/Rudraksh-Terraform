@@ -1,7 +1,7 @@
 
 resource "aws_elasticache_subnet_group" "memcached" {
   name       = "memcached-subnet"
-  subnet_ids = var.private_app_subnet_ids
+  subnet_ids = var.private_db_subnet_ids
 }
 
 
@@ -9,7 +9,7 @@ resource "aws_elasticache_cluster" "memcached" {
   cluster_id           = "app-memcached"
   engine               = "memcached"
   node_type            = var.node_type
-  num_cache_nodes      = var.num_nodes
+  num_cache_nodes      = 1
 
   parameter_group_name = "default.memcached1.6"
 
